@@ -54,6 +54,9 @@ dependencies:
   # 国際化
   intl: ^0.19.0
   
+  # タイムゾーン
+  timezone: ^0.9.4
+  
   # アプリ内課金（後で追加）
   # in_app_purchase: ^3.1.13
   

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'screens/home_screen.dart';
+import 'services/notification_service.dart';
 import 'utils/constants.dart';
 import 'utils/theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // 通知サービスの初期化
+  await NotificationService().initialize();
+  
   runApp(const DailyHabitAIApp());
 }
 

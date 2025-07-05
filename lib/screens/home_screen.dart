@@ -8,6 +8,8 @@ import 'add_habit_screen.dart';
 import 'edit_habit_screen.dart';
 import 'calendar_screen.dart';
 import 'statistics_screen.dart';
+import 'settings_screen.dart';
+import 'habit_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -114,6 +116,17 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  void _navigateToHabitDetail(Habit habit) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HabitDetailScreen(habit: habit)),
+    );
+
+    if (result == true || result == 'deleted') {
+      await _loadData();
+    }
+  }
+
   HabitLog? _getTodayLogForHabit(Habit habit) {
     try {
       return _todayLogs.firstWhere((log) => log.habitId == habit.id);
@@ -154,7 +167,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           IconButton(
             onPressed: () {
-              // TODO: 設定画面に遷移
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingsScreen()),
+              );
             },
             icon: const Icon(Icons.settings),
           ),
@@ -255,9 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             return HabitCard(
                               habit: habit,
                               todayLog: todayLog,
-                              onTap: () {
-                                // TODO: 習慣詳細画面に遷移
-                              },
+                              onTap: () => _navigateToHabitDetail(habit),
                               onToggle: () => _toggleHabitCompletion(habit),
                               onEdit: () => _navigateToEditHabit(habit),
                             );
