@@ -5,6 +5,9 @@ import '../services/database_service.dart';
 import '../widgets/habit_card.dart';
 import '../utils/constants.dart';
 import 'add_habit_screen.dart';
+import 'edit_habit_screen.dart';
+import 'calendar_screen.dart';
+import 'statistics_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -100,6 +103,17 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  void _navigateToEditHabit(Habit habit) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => EditHabitScreen(habit: habit)),
+    );
+
+    if (result == true || result == 'deleted') {
+      await _loadData();
+    }
+  }
+
   HabitLog? _getTodayLogForHabit(Habit habit) {
     try {
       return _todayLogs.firstWhere((log) => log.habitId == habit.id);
@@ -122,7 +136,19 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              // TODO: 統計画面に遷移
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CalendarScreen()),
+              );
+            },
+            icon: const Icon(Icons.calendar_today),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const StatisticsScreen()),
+              );
             },
             icon: const Icon(Icons.analytics),
           ),
@@ -233,9 +259,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 // TODO: 習慣詳細画面に遷移
                               },
                               onToggle: () => _toggleHabitCompletion(habit),
-                              onEdit: () {
-                                // TODO: 習慣編集画面に遷移
-                              },
+                              onEdit: () => _navigateToEditHabit(habit),
                             );
                           },
                         ),
