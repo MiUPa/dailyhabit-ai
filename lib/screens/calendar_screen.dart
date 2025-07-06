@@ -200,7 +200,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                       }
 
                       final date = DateTime(_selectedDate.year, _selectedDate.month, day);
-                      final isToday = date.isAtSameMomentAs(DateTime.now().date);
+                      final isToday = date.isAtSameMomentAs(DateTime.now());
                       final completedCount = _getCompletedHabitsOnDate(date);
                       final totalCount = _habits.length;
                       final completionRate = totalCount > 0 ? (completedCount / totalCount) : 0.0;

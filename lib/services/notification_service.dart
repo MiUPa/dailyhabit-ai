@@ -71,7 +71,7 @@ class NotificationService {
     }
 
     await _notifications.zonedSchedule(
-      habit.id!, // 通知IDとして習慣IDを使用
+      habit.id!,
       '習慣リマインダー',
       '${habit.title}の時間です！',
       tz.TZDateTime.from(scheduledDate, tz.local),
@@ -91,8 +91,7 @@ class NotificationService {
         ),
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
-      matchDateTimeComponents: DateTimeComponents.time, // 毎日同じ時間に繰り返し
+      matchDateTimeComponents: DateTimeComponents.time,
     );
   }
 
@@ -137,8 +136,8 @@ class NotificationService {
           AppConstants.notificationChannelId,
           AppConstants.notificationChannelName,
           channelDescription: AppConstants.notificationChannelDescription,
-          importance: Importance.medium,
-          priority: Priority.medium,
+                  importance: Importance.high,
+        priority: Priority.high,
           icon: '@mipmap/ic_launcher',
         ),
         iOS: const DarwinNotificationDetails(
@@ -163,7 +162,7 @@ class NotificationService {
     bool granted = true;
 
     if (androidPlugin != null) {
-      granted = await androidPlugin.requestPermission() ?? false;
+      granted = await androidPlugin.requestNotificationsPermission() ?? false;
     }
 
     if (iosPlugin != null) {

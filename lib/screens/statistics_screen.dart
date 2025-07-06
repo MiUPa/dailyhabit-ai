@@ -108,7 +108,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
       final completedHabits = dayLogs.where((log) => log.completed).length;
       final completionRate = totalHabits > 0 ? (completedHabits / totalHabits * 100) : 0;
       
-      spots.add(FlSpot(i.toDouble(), completionRate));
+      spots.add(FlSpot(i.toDouble(), completionRate.toDouble()));
     }
     
     return spots;
@@ -142,7 +142,27 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
-          : RefreshIndicator(
+          : (_habits.isEmpty || _recentLogs.isEmpty)
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.bar_chart, size: 64, color: Colors.grey.shade400),
+                      const SizedBox(height: 24),
+                      Text(
+                        'まだ統計データがありません',
+                        style: theme.textTheme.titleLarge?.copyWith(color: Colors.grey.shade600),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        '習慣を登録し、記録をつけるとここに統計が表示されます',
+                        style: theme.textTheme.bodyMedium?.copyWith(color: Colors.grey.shade500),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                )
+              : RefreshIndicator(
               onRefresh: _loadData,
               child: ListView(
                 padding: const EdgeInsets.all(AppConstants.defaultPadding),

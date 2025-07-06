@@ -139,8 +139,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final today = DateTime.now();
-    final completedCount = _todayLogs.where((log) => log.completed).length;
     final totalCount = _habits.length;
+    final completedCount = _todayLogs.where((log) => log.completed).length.clamp(0, totalCount);
+    final remainingCount = (totalCount - completedCount).clamp(0, totalCount);
     final completionRate = totalCount > 0 ? (completedCount / totalCount * 100).round() : 0;
 
     return Scaffold(
@@ -216,7 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           _buildProgressItem(
                             '残り',
-                            (totalCount - completedCount).toString(),
+                            remainingCount.toString(),
                             Icons.pending,
                             Colors.white.withOpacity(0.8),
                           ),

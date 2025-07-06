@@ -22,7 +22,20 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
   bool _isLoading = false;
 
   @override
+  void initState() {
+    super.initState();
+    _titleController.addListener(_onFormChanged);
+    _descriptionController.addListener(_onFormChanged);
+  }
+
+  void _onFormChanged() {
+    setState(() {});
+  }
+
+  @override
   void dispose() {
+    _titleController.removeListener(_onFormChanged);
+    _descriptionController.removeListener(_onFormChanged);
     _titleController.dispose();
     _descriptionController.dispose();
     super.dispose();
