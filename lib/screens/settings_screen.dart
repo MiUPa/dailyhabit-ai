@@ -184,7 +184,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ListTile(
                       leading: const Icon(Icons.mail_outline),
                       title: const Text('お問い合わせ'),
-                      onTap: () => _launchUrl('mailto:support@example.com?subject=DailyHabit%20AI%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B'),
+                      onTap: () => _launchUrl('mailto:support@example.com?subject=DailyHabit%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B'),
                     ),
                   ],
                 ),

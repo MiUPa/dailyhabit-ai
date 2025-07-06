@@ -20,11 +20,11 @@ void main() async {
   // エラーハンドリングの初期化
   ErrorHandler.initializeErrorHandling();
   
-  runApp(const DailyHabitAIApp());
+  runApp(const DailyHabitApp());
 }
 
-class DailyHabitAIApp extends StatelessWidget {
-  const DailyHabitAIApp({super.key});
+class DailyHabitApp extends StatelessWidget {
+  const DailyHabitApp({super.key});
 
   @override
   Widget build(BuildContext context) {

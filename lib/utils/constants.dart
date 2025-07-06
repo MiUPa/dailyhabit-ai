@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppConstants {
   // アプリ情報
-  static const String appName = 'DailyHabit AI';
+  static const String appName = 'DailyHabit';
   static const String appVersion = '1.0.0';
   
   // カラー
@@ -41,12 +41,12 @@ class AppConstants {
   };
   
   // データベース
-  static const String databaseName = 'dailyhabit_ai.db';
+  static const String databaseName = 'dailyhabit.db';
   static const int databaseVersion = 1;
   
   // 通知
-  static const String notificationChannelId = 'dailyhabit_ai_channel';
-  static const String notificationChannelName = 'DailyHabit AI';
+  static const String notificationChannelId = 'dailyhabit_channel';
+  static const String notificationChannelName = 'DailyHabit';
   static const String notificationChannelDescription = '習慣リマインダー通知';
   
   // 設定
