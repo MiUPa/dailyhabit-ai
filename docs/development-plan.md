@@ -178,4 +178,30 @@ lib/
 1. **Flutter開発環境のセットアップ**
 2. **プロジェクト構造の作成**
 3. **基本的なUIコンポーネントの実装**
-4. **SQLiteデータベースの設計・実装** 
+4. **SQLiteデータベースの設計・実装**
+
+## 対応方法
+
+1. **Java（JDK）をインストール**  
+   - [公式サイト（Oracle JDK）](https://www.oracle.com/java/technologies/downloads/)  
+   - または `brew install openjdk` でHomebrew経由でもOK
+
+2. インストール後、再度keystore作成コマンドを実行
+
+### すぐに進める場合
+
+1. 下記コマンドでJDKをインストール（Homebrewの場合）：
+
+   ```sh
+   brew install openjdk
+   ```
+
+2. インストール完了後、再度下記コマンドを実行：
+
+   ```sh
+   keytool -genkey -v -keystore ~/my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-key-alias
+   ```
+
+---
+
+このままJDKのインストールから自動で進めてもよろしいですか？ 
