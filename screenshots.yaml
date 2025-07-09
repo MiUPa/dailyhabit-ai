@@ -1,0 +1,17 @@
+devices:
+  pixel_4:
+    type: android
+    resolution: 1080x2280
+  nexus_7:
+    type: android
+    resolution: 800x1280
+  nexus_10:
+    type: android
+    resolution: 1600x2560
+
+tests:
+  - integration_test/app_test.dart
+
+staging: /tmp/screenshots
+
+output: screenshots 

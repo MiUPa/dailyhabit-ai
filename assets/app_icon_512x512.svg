@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景グラデーション -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f8f9fa;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景円 -->
+  <circle cx="256" cy="256" r="240" fill="url(#bgGradient)" stroke="#ffffff" stroke-width="8"/>
+  
+  <!-- カレンダーアイコン -->
+  <g transform="translate(256, 256)">
+    <!-- カレンダーの外枠 -->
+    <rect x="-80" y="-60" width="160" height="120" rx="12" fill="url(#iconGradient)" stroke="#ffffff" stroke-width="4"/>
+    
+    <!-- カレンダーのヘッダー -->
+    <rect x="-80" y="-60" width="160" height="30" rx="12" fill="#667eea"/>
+    
+    <!-- カレンダーの日付グリッド -->
+    <g stroke="#e9ecef" stroke-width="2" fill="none">
+      <!-- 縦線 -->
+      <line x1="-53.33" y1="-30" x2="-53.33" y2="60"/>
+      <line x1="-26.67" y1="-30" x2="-26.67" y2="60"/>
+      <line x1="0" y1="-30" x2="0" y2="60"/>
+      <line x1="26.67" y1="-30" x2="26.67" y2="60"/>
+      <line x1="53.33" y1="-30" x2="53.33" y2="60"/>
+      
+      <!-- 横線 -->
+      <line x1="-80" y1="-10" x2="80" y2="-10"/>
+      <line x1="-80" y1="10" x2="80" y2="10"/>
+      <line x1="-80" y1="30" x2="80" y2="30"/>
+      <line x1="-80" y1="50" x2="80" y2="50"/>
+    </g>
+    
+    <!-- チェックマーク（習慣完了を表す） -->
+    <g transform="translate(-40, 0)">
+      <circle cx="0" cy="0" r="25" fill="#28a745" stroke="#ffffff" stroke-width="3"/>
+      <path d="M-8 0 L-2 6 L8 -4" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </g>
+    
+    <!-- 小さなチェックマーク（追加の習慣） -->
+    <g transform="translate(20, -20)">
+      <circle cx="0" cy="0" r="15" fill="#17a2b8" stroke="#ffffff" stroke-width="2"/>
+      <path d="M-5 0 L-1 4 L5 -2" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </g>
+    
+    <!-- 進行中の習慣（点線円） -->
+    <g transform="translate(40, 20)">
+      <circle cx="0" cy="0" r="18" fill="none" stroke="#ffc107" stroke-width="3" stroke-dasharray="4,4"/>
+      <circle cx="0" cy="0" r="8" fill="#ffc107"/>
+    </g>
+  </g>
+  
+  <!-- アプリ名（小さく） -->
+  <text x="256" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff">
+    DailyHabit
+  </text>
+</svg> 
