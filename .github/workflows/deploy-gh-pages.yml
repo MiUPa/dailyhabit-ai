@@ -15,18 +15,24 @@ jobs:
       - name: Setup Flutter manually
         run: |
           git clone https://github.com/flutter/flutter.git -b stable --depth 1
-          echo "$GITHUB_WORKSPACE/flutter/bin" >> $GITHUB_PATH
+          export PATH="$GITHUB_WORKSPACE/flutter/bin:$PATH"
+          flutter doctor
 
       - name: Check Flutter & Dart version
         run: |
+          export PATH="$GITHUB_WORKSPACE/flutter/bin:$PATH"
           flutter --version
           dart --version
 
       - name: Install dependencies
-        run: flutter pub get
+        run: |
+          export PATH="$GITHUB_WORKSPACE/flutter/bin:$PATH"
+          flutter pub get
 
       - name: Build web
-        run: flutter build web
+        run: |
+          export PATH="$GITHUB_WORKSPACE/flutter/bin:$PATH"
+          flutter build web
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
