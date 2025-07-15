@@ -16,8 +16,13 @@ class DatabaseServiceImpl {
   static Database? _database;
 
   Future<void> _init() async {
+    try {
     if (_database == null) {
       _database = await _initDatabase();
+      }
+    } catch (e) {
+      print('データベース初期化エラー: $e');
+      // エラーが発生してもアプリは起動を続行
     }
   }
 
@@ -94,10 +99,15 @@ class DatabaseServiceImpl {
   }
 
   Future<List<Habit>> getAllHabits() async {
+    try {
     await _init();
     final db = _database!;
     final List<Map<String, dynamic>> maps = await db.query('habits');
     return List.generate(maps.length, (i) => Habit.fromMap(maps[i]));
+    } catch (e) {
+      print('習慣データ取得エラー: $e');
+      return [];
+    }
   }
 
   Future<Habit?> getHabitById(int id) async {
@@ -155,6 +165,7 @@ class DatabaseServiceImpl {
   }
 
   Future<List<HabitLog>> getHabitLogsByDate(DateTime date) async {
+    try {
     await _init();
     final db = _database!;
     final dateStr = date.toIso8601String().split('T')[0];
@@ -164,6 +175,10 @@ class DatabaseServiceImpl {
       whereArgs: [dateStr],
     );
     return List.generate(maps.length, (i) => HabitLog.fromMap(maps[i]));
+    } catch (e) {
+      print('習慣ログ取得エラー: $e');
+      return [];
+    }
   }
 
   Future<int> updateHabitLog(HabitLog log) async {

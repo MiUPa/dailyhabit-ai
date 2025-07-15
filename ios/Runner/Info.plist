@@ -45,5 +45,7 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSUserNotificationUsageDescription</key>
+	<string>習慣のリマインダーを送信するために通知権限が必要です。</string>
 </dict>
 </plist>

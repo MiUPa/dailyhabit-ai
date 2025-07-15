@@ -10,6 +10,7 @@ import 'utils/error_handler.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
+  try {
   // 通知サービスの初期化
   await NotificationService().initialize();
   
@@ -19,6 +20,10 @@ void main() async {
   
   // エラーハンドリングの初期化
   ErrorHandler.initializeErrorHandling();
+  } catch (e) {
+    print('初期化エラー: $e');
+    // エラーが発生してもアプリは起動を続行
+  }
   
   runApp(const DailyHabitApp());
 }

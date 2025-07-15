@@ -46,7 +46,10 @@ class _HomeScreenState extends State<HomeScreen> {
         _isLoading = false;
       });
     } catch (e) {
+      print('データ読み込みエラー: $e');
       setState(() {
+        _habits = [];
+        _todayLogs = [];
         _isLoading = false;
       });
       if (mounted) {

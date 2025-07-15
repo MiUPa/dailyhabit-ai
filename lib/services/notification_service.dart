@@ -12,6 +12,7 @@ class NotificationService {
   final FlutterLocalNotificationsPlugin _notifications = FlutterLocalNotificationsPlugin();
 
   Future<void> initialize() async {
+    try {
     tz.initializeTimeZones();
 
     const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -33,9 +34,14 @@ class NotificationService {
 
     // 通知チャンネルの作成
     await _createNotificationChannel();
+    } catch (e) {
+      print('通知サービス初期化エラー: $e');
+      // エラーが発生してもアプリは起動を続行
+    }
   }
 
   Future<void> _createNotificationChannel() async {
+    try {
     const androidChannel = AndroidNotificationChannel(
       AppConstants.notificationChannelId,
       AppConstants.notificationChannelName,
@@ -48,6 +54,9 @@ class NotificationService {
     await _notifications
         .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(androidChannel);
+    } catch (e) {
+      print('通知チャンネル作成エラー: $e');
+    }
   }
 
   Future<void> scheduleHabitReminder(Habit habit) async {
